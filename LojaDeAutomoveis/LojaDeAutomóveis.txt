@@ -1,0 +1,203 @@
+--- CRIAÇÃO DA TABELA ---
+
+CREATE TABLE Carros (
+    ID SERIAL PRIMARY KEY,
+    Marca VARCHAR(50) NOT NULL,
+    Modelo VARCHAR(50) NOT NULL,
+    Ano INT NOT NULL,
+    Preco DECIMAL(10, 2) NOT NULL,
+    Cor VARCHAR(30),
+    Quilometragem INT
+);
+
+--- INSERINDO DADOS NA TABELA ---
+
+INSERT INTO Carros (Marca, Modelo, Ano, Preco, Cor, Quilometragem) VALUES
+('Toyota', 'Corolla', 2018, 70000.00, 'Prata', 45000),
+('Honda', 'Civic', 2017, 68000.00, 'Preto', 40000),
+('Ford', 'Focus', 2019, 72000.00, 'Branco', 30000),
+('Chevrolet', 'Cruze', 2016, 65000.00, 'Vermelho', 50000),
+('Volkswagen', 'Jetta', 2018, 75000.00, 'Azul', 35000),
+('Hyundai', 'Elantra', 2017, 70000.00, 'Cinza', 42000),
+('Nissan', 'Sentra', 2019, 73000.00, 'Verde', 31000),
+('Kia', 'Cerato', 2018, 68000.00, 'Amarelo', 46000),
+('BMW', '320i', 2020, 120000.00, 'Preto', 15000),
+('Audi', 'A3', 2019, 110000.00, 'Branco', 20000),
+('Mercedes-Benz', 'C200', 2020, 130000.00, 'Prata', 10000),
+('Renault', 'Megane', 2016, 60000.00, 'Rosa', 55000),
+('Peugeot', '308', 2017, 64000.00, 'Azul', 47000),
+('Fiat', 'Argo', 2019, 53000.00, 'Branco', 25000),
+('Jeep', 'Renegade', 2018, 90000.00, 'Verde', 38000),
+('Subaru', 'Impreza', 2020, 95000.00, 'Vermelho', 22000),
+('Mazda', '3', 2017, 67000.00, 'Cinza', 43000),
+('Mitsubishi', 'Lancer', 2018, 68000.00, 'Prata', 41000),
+('Chevrolet', 'Onix', 2020, 56000.00, 'Preto', 16000),
+('Ford', 'Ka', 2019, 50000.00, 'Branco', 27000),
+('Volkswagen', 'Polo', 2018, 69000.00, 'Azul', 34000),
+('Hyundai', 'HB20', 2020, 54000.00, 'Vermelho', 21000),
+('Nissan', 'Versa', 2017, 63000.00, 'Cinza', 46000),
+('Kia', 'Soul', 2019, 70000.00, 'Verde', 32000),
+('BMW', 'X1', 2018, 140000.00, 'Preto', 18000),
+('Audi', 'Q3', 2017, 150000.00, 'Branco', 25000),
+('Mercedes-Benz', 'GLA', 2020, 160000.00, 'Prata', 12000),
+('Renault', 'Clio', 2019, 52000.00, 'Azul', 24000),
+('Peugeot', '208', 2020, 61000.00, 'Amarelo', 13000),
+('Fiat', 'Mobi', 2017, 45000.00, 'Rosa', 48000),
+('Jeep', 'Compass', 2018, 120000.00, 'Verde', 36000),
+('Subaru', 'Forester', 2019, 140000.00, 'Vermelho', 29000),
+('Mazda', 'CX-5', 2018, 130000.00, 'Cinza', 31000),
+('Mitsubishi', 'Outlander', 2020, 160000.00, 'Prata', 17000),
+('Chevrolet', 'Spin', 2019, 75000.00, 'Preto', 26000),
+('Ford', 'EcoSport', 2020, 82000.00, 'Branco', 15000),
+('Volkswagen', 'T-Cross', 2018, 90000.00, 'Azul', 35000),
+('Hyundai', 'Tucson', 2017, 85000.00, 'Vermelho', 44000),
+('Nissan', 'Kicks', 2019, 89000.00, 'Cinza', 28000),
+('Kia', 'Sportage', 2020, 95000.00, 'Verde', 19000),
+('BMW', 'X3', 2018, 200000.00, 'Preto', 22000),
+('Audi', 'Q5', 2020, 210000.00, 'Branco', 14000),
+('Mercedes-Benz', 'GLC', 2019, 220000.00, 'Prata', 20000),
+('Renault', 'Captur', 2018, 78000.00, 'Rosa', 33000),
+('Peugeot', '2008', 2017, 73000.00, 'Azul', 47000),
+('Fiat', 'Toro', 2020, 95000.00, 'Branco', 18000),
+('Jeep', 'Cherokee', 2018, 150000.00, 'Verde', 38000),
+('Subaru', 'XV', 2019, 120000.00, 'Vermelho', 23000),
+('Mazda', 'CX-9', 2020, 190000.00, 'Cinza', 15000),
+('Mitsubishi', 'Pajero', 2017, 180000.00, 'Prata', 41000);
+
+
+--- CRIAÇÃO DA TABELA VENDEDORES ---
+
+CREATE TABLE Vendedores (
+    VendedorID SERIAL PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    CodigoNumerico INT NOT NULL UNIQUE
+);
+
+
+--- INSERINDO DADOS NA TABELA VENDEDORES ---
+
+INSERT INTO Vendedores (Nome, CodigoNumerico) VALUES
+('Carlos Silva', 1001),
+('Maria Souza', 1002),
+('João Oliveira', 1003),
+('Ana Pereira', 1004);
+
+
+--- CRIANDO TABELA VENDAS ---
+
+CREATE TABLE Vendas (
+    VendaID SERIAL PRIMARY KEY,
+    CarroID INT NOT NULL,
+    VendedorCodigo INT NOT NULL,
+    DataVenda DATE NOT NULL,
+    FOREIGN KEY (CarroID) REFERENCES Carros(ID),
+    FOREIGN KEY (VendedorCodigo) REFERENCES Vendedores(CodigoNumerico)
+);
+
+
+---INSERINDO DADOS NA TABELA VENDAS ---
+
+INSERT INTO Vendas (CarroID, VendedorCodigo, DataVenda) VALUES
+(1, 1001, '2023-01-10'),
+(2, 1002, '2023-02-15'),
+(3, 1003, '2023-03-20'),
+(4, 1004, '2023-04-25'),
+(5, 1001, '2023-05-30');
+
+
+--- CONSULTA USANDO O INNER JOIN ---
+
+SELECT Carros.Marca, Carros.Modelo, Vendedores.CodigoNumerico AS Vendedor, Vendas.DataVenda
+FROM Carros
+INNER JOIN Vendas ON Carros.ID = Vendas.CarroID
+INNER JOIN Vendedores ON Vendas.VendedorCodigo = Vendedores.CodigoNumerico;
+
+
+--- CONSULTA USANDO O LEFT JOIN ---
+
+
+SELECT Carros.Marca, Carros.Modelo, Vendedores.CodigoNumerico AS Vendedor, Vendas.DataVenda
+FROM Carros
+LEFT JOIN Vendas ON Carros.ID = Vendas.CarroID
+LEFT JOIN Vendedores ON Vendas.VendedorCodigo = Vendedores.CodigoNumerico;
+
+
+
+--- CONSULTA USANDO O FULL JOIN ---
+
+SELECT Carros.Marca, Carros.Modelo, Vendedores.CodigoNumerico AS Vendedor, Vendas.DataVenda
+FROM Carros
+FULL JOIN Vendas ON Carros.ID = Vendas.CarroID
+FULL JOIN Vendedores ON Vendas.VendedorCodigo = Vendedores.CodigoNumerico;
+
+
+--- CONSULTA USANDO O CROSS JOIN ---
+
+SELECT Carros.Marca, Carros.Modelo, Vendedores.CodigoNumerico AS Vendedor
+FROM Carros
+CROSS JOIN Vendedores;
+
+
+--- CONSULTA USANDO SUBQUERY ---
+
+SELECT Marca, Modelo, Preco
+FROM Carros
+WHERE Preco > (SELECT AVG(Preco) FROM Carros);
+
+
+--- CONSULTA USANDO O CTE ---
+
+WITH CarrosVendidos AS (
+    SELECT CarroID, COUNT(*) AS TotalVendas
+    FROM Vendas
+    GROUP BY CarroID
+)
+SELECT Carros.Marca, Carros.Modelo, CarrosVendidos.TotalVendas
+FROM Carros
+INNER JOIN CarrosVendidos ON Carros.ID = CarrosVendidos.CarroID;
+
+
+--- CONSULTA USANDO TRIGGER --- CRIAÇÃO DA TABELA VendaLogs ---
+
+CREATE TABLE VendaLogs (
+    LogID SERIAL PRIMARY KEY,
+    VendaID INT,
+    CarroID INT,
+    VendedorCodigo INT,
+    DataVenda DATE,
+    LogData TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE OR REPLACE FUNCTION LogVenda()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO VendaLogs (VendaID, CarroID, VendedorCodigo, DataVenda)
+    VALUES (NEW.VendaID, NEW.CarroID, NEW.VendedorCodigo, NEW.DataVenda);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER VendaLogTrigger
+AFTER INSERT ON Vendas
+FOR EACH ROW
+EXECUTE FUNCTION LogVenda();
+
+
+--- CONSULTA USANDO PROCEDURE ---
+
+CREATE OR REPLACE PROCEDURE InserirVenda(
+    IN p_CarroID INT,
+    IN p_VendedorCodigo INT,
+    IN p_DataVenda DATE
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Vendas (CarroID, VendedorCodigo, DataVenda)
+    VALUES (p_CarroID, p_VendedorCodigo, p_DataVenda);
+    RAISE NOTICE 'Venda inserida com sucesso: CarroID: %, VendedorCodigo: %, DataVenda: %', p_CarroID, p_VendedorCodigo, p_DataVenda;
+END;
+$$;
+
+
+CALL InserirVenda(6, 1002, '2023-06-15');
