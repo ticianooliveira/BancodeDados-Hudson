@@ -1,0 +1,228 @@
+--Criação da tabela funcionários--
+
+CREATE TABLE funcionarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) UNIQUE NOT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(15),
+    idade INT,
+    endereco VARCHAR(255)
+);
+
+
+--Inserindo dados na tabela fncionarios--
+
+INSERT INTO funcionarios (nome, cpf, email, telefone, idade, endereco) VALUES
+('João Silva', '123.456.789-00', 'joao.silva@example.com', '9999-9991', 20, 'Rua A, 123'),
+('Maria Oliveira', '987.654.321-00', 'maria.oliveira@example.com', '8888-8881', 17, 'Rua B, 456'),
+('Carlos Pereira', '456.789.123-00', 'carlos.pereira@example.com', '7777-7771', 30, 'Rua C, 789'),
+('Ana Souza', '321.654.987-00', 'ana.souza@example.com', '6666-6661', 25, 'Rua D, 321'),
+('Lucas Costa', '789.123.456-00', 'lucas.costa@example.com', '5555-5551', 18, 'Rua E, 654'),
+('Fernanda Lima', '159.753.486-00', 'fernanda.lima@example.com', '4444-4441', 22, 'Rua F, 987'),
+('Paulo Alves', '951.357.258-00', 'paulo.alves@example.com', '3333-3331', 35, 'Rua G, 147'),
+('Beatriz Machado', '753.951.852-00', 'beatriz.machado@example.com', '2222-2221', 27, 'Rua H, 258'),
+('Ricardo Ferreira', '258.159.753-00', 'ricardo.ferreira@example.com', '1111-1111', 40, 'Rua I, 369'),
+('Juliana Gomes', '357.258.159-00', 'juliana.gomes@example.com', '9999-9992', 32, 'Rua J, 147'),
+('Fabio Mendes', '852.753.951-00', 'fabio.mendes@example.com', '8888-8882', 21, 'Rua K, 258'),
+('Aline Santos', '654.321.987-00', 'aline.santos@example.com', '7777-7772', 28, 'Rua L, 369'),
+('Rafael Rocha', '987.456.321-00', 'rafael.rocha@example.com', '6666-6662', 24, 'Rua M, 147'),
+('Patricia Teixeira', '123.789.456-00', 'patricia.teixeira@example.com', '5555-5552', 19, 'Rua N, 258'),
+('Gabriel Nunes', '456.123.789-00', 'gabriel.nunes@example.com', '4444-4442', 33, 'Rua O, 369'),
+('Camila Ribeiro', '789.456.123-00', 'camila.ribeiro@example.com', '3333-3332', 29, 'Rua P, 147'),
+('Bruno Cardoso', '159.486.753-00', 'bruno.cardoso@example.com', '2222-2222', 26, 'Rua Q, 258'),
+('Carla Martins', '951.258.357-00', 'carla.martins@example.com', '1111-1112', 23, 'Rua R, 369'),
+('Diego Lopes', '753.852.951-00', 'diego.lopes@example.com', '9999-9993', 34, 'Rua S, 147'),
+('Lorena Alves', '258.753.159-00', 'lorena.alves@example.com', '8888-8883', 31, 'Rua T, 258');
+
+
+--Criação da tabela historico_produto--
+
+
+CREATE TABLE historico_produto (
+    id SERIAL PRIMARY KEY,
+    produto_id INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    estoque INT NOT NULL,
+    data_atualizacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+--Criação da tabela loja--
+
+CREATE TABLE loja (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    localizacao VARCHAR(100) NOT NULL,
+    ultima_atualizacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+--Inserindo dados na tabela loja--
+
+INSERT INTO loja (nome, localizacao) VALUES
+('Loja A', 'Centro'),
+('Loja B', 'Zona Sul');
+
+
+--Criação da tabela produtos--
+
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    estoque INT NOT NULL
+);
+
+
+--Inserindo dados na tabela produtos--
+
+INSERT INTO produtos (nome, preco, estoque) VALUES
+('Produto 1', 100.00, 50),
+('Produto 2', 200.00, 40),
+('Produto 3', 300.00, 30),
+('Produto 4', 400.00, 20),
+('Produto 5', 500.00, 10),
+('Produto 6', 600.00, 60),
+('Produto 7', 700.00, 70),
+('Produto 8', 800.00, 80),
+('Produto 9', 900.00, 90),
+('Produto 10', 1000.00, 100),
+('Produto 11', 1100.00, 50),
+('Produto 12', 1200.00, 40),
+('Produto 13', 1300.00, 30),
+('Produto 14', 1400.00, 20),
+('Produto 15', 1500.00, 10),
+('Produto 16', 1600.00, 60),
+('Produto 17', 1700.00, 70),
+('Produto 18', 1800.00, 80),
+('Produto 19', 1900.00, 90),
+('Produto 20', 2000.00, 100),
+('Produto 21', 2100.00, 50),
+('Produto 22', 2200.00, 40),
+('Produto 23', 2300.00, 30),
+('Produto 24', 2400.00, 20),
+('Produto 25', 2500.00, 10),
+('Produto 26', 2600.00, 60),
+('Produto 27', 2700.00, 70),
+('Produto 28', 2800.00, 80),
+('Produto 29', 2900.00, 90),
+('Produto 30', 3000.00, 100),
+('Produto 31', 3100.00, 50),
+('Produto 32', 3200.00, 40),
+('Produto 33', 3300.00, 30),
+('Produto 34', 3400.00, 20),
+('Produto 35', 3500.00, 10),
+('Produto 36', 3600.00, 60),
+('Produto 37', 3700.00, 70),
+('Produto 38', 3800.00, 80),
+('Produto 39', 3900.00, 90),
+('Produto 40', 4000.00, 100),
+('Produto 41', 4100.00, 50),
+('Produto 42', 4200.00, 40),
+('Produto 43', 4300.00, 30),
+('Produto 44', 4400.00, 20),
+('Produto 45', 4500.00, 10),
+('Produto 46', 4600.00, 60),
+('Produto 47', 4700.00, 70),
+('Produto 48', 4800.00, 80),
+('Produto 49', 4900.00, 90),
+('Produto 50', 5000.00, 100);
+
+--Trigger para registro de data e hora das atualizações--
+
+CREATE OR REPLACE FUNCTION registro_ultima_atualizacao()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.ultima_atualizacao = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_ultima_atualizacao
+BEFORE UPDATE ON loja
+FOR EACH ROW
+EXECUTE FUNCTION registro_ultima_atualizacao();
+
+--Trigger para verificar se a idade é maior ou igual a 18 anos--
+-- Trigger para verificar se a idade é maior ou igual a 18 anos na tabela funcionários
+CREATE OR REPLACE FUNCTION verifica_idade()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.idade < 18 THEN
+        NEW.endereco := NEW.endereco || ' (Menor Aprendiz)';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_verifica_idade
+BEFORE INSERT ON funcionarios
+FOR EACH ROW
+EXECUTE FUNCTION verifica_idade();
+
+
+-- Trigger para gerar uma nova entrada na tabela--
+
+
+historico_produto sempre que um registro na tabela produtos é atualizado
+CREATE OR REPLACE FUNCTION gerar_entrada_historico_produtos()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO historico_produto (produto_id, nome, preco, estoque, data_atualizacao)
+    VALUES (NEW.id, NEW.nome, NEW.preco, NEW.estoque, CURRENT_TIMESTAMP);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_gerar_entrada_historico_produtos
+AFTER UPDATE ON produtos
+FOR EACH ROW
+EXECUTE FUNCTION gerar_entrada_historico_produtos();
+
+
+--Consulta para saber se é aprendiz ou não--
+SELECT 
+    id,
+    nome,
+    idade,
+    CASE 
+        WHEN idade < 18 THEN 'Aprendiz'
+        ELSE 'Não Aprendiz'
+    END AS status
+FROM 
+    funcionarios;
+
+
+--Consulta para saber a última atualização de uma loja--
+
+SELECT 
+    id,
+    nome,
+    localizacao,
+    ultima_atualizacao
+FROM 
+    loja
+ORDER BY 
+    ultima_atualizacao DESC
+LIMIT 1;
+
+
+-- Função que será chamada pela trigger
+CREATE OR REPLACE FUNCTION atualizar_historico_produto()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO historico_produto (produto_id, nome, preco, estoque, data_atualizacao)
+    VALUES (NEW.id, NEW.nome, NEW.preco, NEW.estoque, CURRENT_TIMESTAMP);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger que chama a função sempre que um registro na tabela produtos é atualizado
+CREATE TRIGGER trigger_atualizar_historico_produto
+AFTER UPDATE ON produtos
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_historico_produto();
+
+
