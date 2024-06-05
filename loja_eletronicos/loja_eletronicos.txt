@@ -1,0 +1,59 @@
+-- Criando a tabela produtos --
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    categoria VARCHAR(100),
+    preco DECIMAL(10, 2),
+    quantidade_vendida INT
+);
+
+-- Inserindo dados de exemplo --
+INSERT INTO produtos (nome, categoria, preco, quantidade_vendida) VALUES
+('Smartphone', 'Eletrônicos', 1000.00, 5),
+('Smartphone', 'Eletrônicos', 1000.00, 5),
+('Tablet', 'Eletrônicos', 800.00, 3),
+('TV', 'Eletrônicos', 1500.00, 2),
+('Fones de Ouvido', 'Acessórios', 100.00, 10),
+('Câmera', 'Eletrônicos', 1200.00, 2),
+('Notebook', 'Eletrônicos', 2000.00, 3),
+('Smartwatch', 'Eletrônicos', 500.00, 4),
+('Smartband', 'Eletrônicos', 200.00, 6),
+('Smartpen', 'Eletrônicos', 150.00, 4),
+('Impressora', 'Eletrônicos', 300.00, 5),
+('Fogão Elétrico', 'Eletrodomésticos', 700.00, 2),
+('Aspirador de Pó', 'Eletrodomésticos', 400.00, 3),
+('Liquidificador', 'Eletrodomésticos', 150.00, 7),
+('Geladeira', 'Eletrodomésticos', 1500.00, 2),
+('Micro-ondas', 'Eletrodomésticos', 600.00, 4),
+('Batedeira', 'Eletrodomésticos', 200.00, 5),
+('Panela Elétrica', 'Eletrodomésticos', 100.00, 6),
+('Cafeteira', 'Eletrodomésticos', 80.00, 8),
+('Ventilador', 'Eletrodomésticos', 50.00, 10);
+
+-- Criando a view materializada --
+CREATE MATERIALIZED VIEW quantidade_total_vendida AS
+SELECT nome, SUM(quantidade_vendida) AS total_vendido
+FROM produtos
+GROUP BY nome;
+
+-- Criando a view virtual --
+CREATE VIEW produtos_valor_acima_media AS
+SELECT p.nome, p.categoria, p.preco
+FROM produtos p
+JOIN (
+    SELECT categoria, AVG(preco) AS media_preco
+    FROM produtos
+    GROUP BY categoria
+) AS subquery
+ON p.categoria = subquery.categoria
+WHERE p.preco > subquery.media_preco;
+
+-- Consulta para encontrar a quantidade total vendida do produto "Smartphone" --
+SELECT total_vendido
+FROM quantidade_total_vendida
+WHERE nome = 'Smartphone';
+
+-- Consulta para encontrar os nomes dos produtos da categoria "Eletrônicos" com valor superior à média --
+SELECT nome
+FROM produtos_valor_acima_media
+WHERE categoria = 'Eletrônicos';
